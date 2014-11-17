@@ -11,20 +11,20 @@ public class Startup {
     
     public static void main(String[] args) {
         
-        Song s1 = new Song("The End", 11, "Jim Morrison", "The Doors");
-        Song s2 = new Song("Subterranean Homesick Alien", 3, "Johnny Greenwood", "OK Computer");
-        Song s3 = new Song("Stubborn Love", 7, "The Lumineers", "The Lumineers");
-        Song s4 = new Song("I Would Hurt a Fly", 2, "Built to Spill", "Perfect from Now On");
+        Song s1 = new Song("The End", "T11", "Jim Morrison", "The Doors");
+        Song s2 = new Song("Subterranean Homesick Alien", "T3", "Johnny Greenwood", "OK Computer");
+        Song s3 = new Song("Stubborn Love", "T7", "The Lumineers", "The Lumineers");
+        Song s4 = new Song("I Would Hurt a Fly", "T2", "Built to Spill", "Perfect from Now On");
         
-        List<Song> songList = new ArrayList<>();
-        songList.add(s1);
-        songList.add(s2);
-        songList.add(s3);
-        songList.add(s4);
+        Map<String, Song> songList = new HashMap<>();
+        songList.put("T11", s1);
+        songList.put("T3", s2);
+        songList.put("T7", s3);
+        songList.put("T2", s4);
         
-        List<Song> list = new ArrayList<>(songList);
-        Collections.sort(list, new Song());
-        for(Song s : list) {
+        Map<String, Song> songMap = new HashMap<>(songList);
+        Collection<Song> value = songMap.values();
+                for(Song s : value) {
             System.out.println(s);
         }
     }

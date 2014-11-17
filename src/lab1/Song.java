@@ -7,9 +7,9 @@ import org.apache.commons.lang3.builder.CompareToBuilder;
  *
  * @author schra_000
  */
-public class Song {
+public class Song implements Comparable<Song>{
     private String title;
-    private int songID;
+    private String songID;
     private String composer;
     private String album;
 
@@ -25,7 +25,7 @@ public class Song {
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 67 * hash + this.songID;
+        hash = 97 * hash + Objects.hashCode(this.songID);
         return hash;
     }
 
@@ -38,28 +38,20 @@ public class Song {
             return false;
         }
         final Song other = (Song) obj;
-        if (this.songID != other.songID) {
+        if (!Objects.equals(this.songID, other.songID)) {
             return false;
         }
         return true;
     }
 
-    public int compareTo(Object other) {
-        
-        Song s = (Song)other;
+    
 
-        final int BEFORE = -1;
-	final int EQUAL = 0;
-	final int AFTER = 1;
-        
-        if(this.equals(s)) return EQUAL;
-        if(this.songID > s.songID) return BEFORE;
-        if(this.songID < s.songID) return AFTER;
-        
-        return EQUAL; // default
+    @Override
+    public int compareTo(Song s) {
+      return this.songID.compareTo(s.songID);
     }
-    public Song(String title, int songID, String composer, String album) {
-        this.title = "unknown";
+    public Song(String title, String songID, String composer, String album) {
+        this.title = title;
         this.songID = songID;
         this.composer = composer;
         this.album = album;
@@ -81,11 +73,11 @@ public class Song {
         this.title = title;
     }
 
-    public int getSongID() {
+    public String getSongID() {
         return songID;
     }
 
-    public void setSongID(int songID) {
+    public void setSongID(String songID) {
         this.songID = songID;
     }
 
@@ -96,5 +88,10 @@ public class Song {
     public void setComposer(String composer) {
         this.composer = composer;
     }
+
+//    @Override
+//    public int compareTo(Song t) {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
     
 }
